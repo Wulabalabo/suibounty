@@ -44,7 +44,7 @@ const getDepositCoin = async (deposit: number) => {
   const NAVX_Pool: PoolConfig = pool[NAVX.symbol as keyof Pool];
 
   // Step 1 Deposit
-  const to_deposit = txb.splitCoins(txb.gas, [txb.pure(100_000_0000)]);
+  const to_deposit = txb.splitCoins(txb.gas, [txb.pure(100_000_000)]);
   await txb.moveCall({
     target: `${process.env.Package}::incentive_v2::entry_deposit`,
     arguments: [
@@ -53,7 +53,7 @@ const getDepositCoin = async (deposit: number) => {
       txb.object(SUI_Pool.poolId),
       txb.pure(SUI_Pool.assetId),
       to_deposit,
-      txb.pure(100_000_0000),
+      txb.pure(100_000_000),
       txb.object(process.env.IncentiveV1!),
       txb.object(process.env.IncentiveV2!),
     ],
